@@ -1,8 +1,8 @@
 package com.application.filer.service;
 
 
-import com.application.filer.dao.User_Mst_Repo;
-import com.application.filer.dto.User_Mst;
+import com.application.filer.dao.UserMstRepo;
+import com.application.filer.dto.UserMst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +12,21 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final User_Mst_Repo userMstRepo;
+    private final UserMstRepo userMstRepo;
 
     @Autowired
-    public UserService(User_Mst_Repo userMstRepo) {
+    public UserService(UserMstRepo userMstRepo) {
         this.userMstRepo = userMstRepo;
     }
-    public List<User_Mst> getUserList(){
+    public List<UserMst> getUserList(){
         return this.userMstRepo.findAll();
     }
 
-    public void saveUser(User_Mst user){
+    public void saveUser(UserMst user){
         this.userMstRepo.save(user);
     }
 
-    public Optional<User_Mst> getUser(String user_id){
+    public Optional<UserMst> getUserById(String user_id){
         Long userIdLong = Long.valueOf(user_id);
         return this.userMstRepo.findById(userIdLong);
     }

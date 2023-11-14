@@ -1,6 +1,6 @@
 package com.application.filer.controller;
 
-import com.application.filer.dto.User_Mst;
+import com.application.filer.dto.UserMst;
 import com.application.filer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> getUserList(){
         Map<String, Object> response = new HashMap<>();
         try{
-            List<User_Mst> userList = this.userService.getUserList();
+            List<UserMst> userList = this.userService.getUserList();
             response.put("data",userList);
             response.put("message","success");
             response.put("error","");
@@ -33,12 +33,12 @@ public class UserController {
         }
     }
 
-    @PostMapping("/saveUser")
-    public ResponseEntity<Map<String, Object>> saveUser(@RequestBody User_Mst user){
+    @PostMapping("/register")
+    public ResponseEntity<Map<String, Object>> saveUser(@RequestBody UserMst user){
         Map<String, Object> response = new HashMap<>();
         try{
             this.userService.saveUser(user);
-            response.put("data", Collections.emptyList());
+            response.put("data", null);
             response.put("message","success");
             response.put("error","");
             return new ResponseEntity<>(response, HttpStatus.OK);
@@ -55,7 +55,7 @@ public class UserController {
     public ResponseEntity<Map<String,Object>> getUserbyId(@RequestParam String user_id){
         Map<String,Object> response = new HashMap<>();
         try{
-            Optional<User_Mst> user = this.userService.getUser(user_id);
+            Optional<UserMst> user = this.userService.getUserById(user_id);
             response.put("data", user);
             response.put("message","success");
             response.put("error","");
