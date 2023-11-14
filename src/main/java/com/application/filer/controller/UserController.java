@@ -31,7 +31,6 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<Map<String, Object>> saveUser(@RequestBody UserMst user){
-        Map<String, Object> response = new HashMap<>();
         try{
             this.userService.saveUser(user);
             return this.responseService.getSuccessRes(null);
@@ -43,7 +42,6 @@ public class UserController {
 
     @GetMapping("/getUser")
     public ResponseEntity<Map<String,Object>> getUserbyId(@RequestParam String user_id){
-        Map<String,Object> response = new HashMap<>();
         try{
             Optional<UserMst> user = this.userService.getUserById(user_id);
             return this.responseService.getSuccessRes(user);
